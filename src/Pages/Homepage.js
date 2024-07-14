@@ -72,25 +72,6 @@ const Homepage = () => {
           >
             Conoce Lugares
           </Link>
-          <Link
-            to="/perfil"
-            className="py-2 px-4 bg-sky-900 text-white rounded-lg"
-          >
-            Ir a Mi Perfil
-          </Link>
-          <Link
-            to="/reestablecer-contraseña"
-            className="py-2 px-4 bg-sky-900 text-white rounded-lg"
-          >
-            Reestablecer Contraseña
-          </Link>
-
-          <Link
-          to="/solicitudes"
-          className="py-2 px-4 bg-sky-900 text-white rounded-lg"
-          >
-            Solicitudes
-          </Link>
         </div>
       </section>
       <Footer />

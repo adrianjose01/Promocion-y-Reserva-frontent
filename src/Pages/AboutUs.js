@@ -7,7 +7,7 @@ const AboutUs = () => {
       <Header />
       <div className="mx-10 mt-10">
         <h1 className="font-bold mb-5 text-4xl text-sky-900">Sobre Nosotros</h1>
-        <div className="flex flex-col gap-4 mb-10 max-w-[800px]">
+        <div className="flex flex-col gap-4 mb-10 max-w-[800px] min-h-[70vh]">
           <p>
             Una aplicación web dedicada a la protección y el disfrute sostenible
             del medio ambiente en la República Dominicana. Nuestro objetivo es
