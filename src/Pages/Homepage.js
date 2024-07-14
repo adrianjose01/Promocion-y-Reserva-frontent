@@ -84,6 +84,13 @@ const Homepage = () => {
           >
             Reestablecer Contraseña
           </Link>
+
+          <Link
+          to="/solicitudes"
+          className="py-2 px-4 bg-sky-900 text-white rounded-lg"
+          >
+            Solicitudes
+          </Link>
         </div>
       </section>
       <Footer />

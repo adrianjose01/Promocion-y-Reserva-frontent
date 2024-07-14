@@ -43,7 +43,7 @@ const ResetPassword = () => {
                                     Contraseña antigua
                                 </label>
                                 <input
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 text-xl bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
                                     id="password"
                                     type="password"
                                     {...register('password', { required: true })}
@@ -55,7 +55,7 @@ const ResetPassword = () => {
                                     Contraseña nueva
                                 </label>
                                 <input
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 text-xl bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
                                     id="password"
                                     type="password"
                                     {...register('password', { required: true })}
@@ -67,7 +67,7 @@ const ResetPassword = () => {
                                    Repetir contraseña
                                 </label>
                                 <input
-                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
+                                    className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 text-xl bg-gray-200 mb-3 leading-tight focus:outline-none focus:shadow-outline ${errors.password ? 'border-red-500' : ''}`}
                                     id="password"
                                     type="password"
                                     {...register('password', { required: true })}
