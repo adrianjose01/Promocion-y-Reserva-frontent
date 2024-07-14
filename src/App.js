@@ -5,6 +5,7 @@ import LoginForm from "./Pages/LoginForm";
 import Profile from "./Pages/Profile";
 import ResetPassword from "./Pages/ResetPassword";
 import Requests from "./Pages/Requests";
+import AboutUs from "./Pages/AboutUs";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/perfil" element={<Profile />} />
       <Route path="/reestablecer-contraseña" element={<ResetPassword />} />
       <Route path="/solicitudes" element={<Requests />} />
+      <Route path="/sobre-nosotros" element={<AboutUs />} />
     </Routes>
   );
 }
