@@ -44,7 +44,7 @@ const RegisterForm = () => {
           <div className="mb-4  ">
             <button
               type="button"
-              className="w-48 py-1 mb-3 text-sky-900 font-bold border-2 border-sky-900 rounded-md "
+              className="w-48 py-1 mb-3 text-sky-900 font-bold border-2 border-sky-900 rounded-md"
             >
               <FontAwesomeIcon icon={faFacebookF} className="mr-2" />
               Facebook
