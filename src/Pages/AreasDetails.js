@@ -82,7 +82,7 @@ const AreasDetails = () => {
         <h1 className="my-4 max-w-[800px]">{area.description}</h1>
         <h1 className="mt-4 font-bold">Horario:</h1>
         <h1 className="mb-4">{area.schedule}</h1>
-        <Link>
+        <Link to={"/solicitud-formulario"}>
           <PrimaryButton>Solicitar</PrimaryButton>
         </Link>
       </div>

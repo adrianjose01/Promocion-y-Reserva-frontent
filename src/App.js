@@ -9,6 +9,7 @@ import AboutUs from "./Pages/AboutUs";
 import ProtectedAreas from "./Pages/ProtectedAreas";
 import AreasDetails from "./Pages/AreasDetails";
 import RequestForm from "./Pages/RequestForm";
+import NewsList from "./Pages/NewsList";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/reestablecer-contraseña" element={<ResetPassword />} />
       <Route path="/solicitudes" element={<Requests />} />
       <Route path="/sobre-nosotros" element={<AboutUs />} />
+      <Route path="/noticias" element={<NewsList />} />
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />
       <Route path="/lugares-turisticos/:id" element={<AreasDetails />} />
       <Route path="/solicitud-formulario" element={<RequestForm />} />

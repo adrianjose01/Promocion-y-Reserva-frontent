@@ -41,6 +41,9 @@ const Header = () => {
             <Link to="/sobre-nosotros" className="font-bold text-base">
               Sobre Nosotros
             </Link>
+            <Link to="/noticias" className="font-bold text-base">
+              Noticias
+            </Link>
             <Link to="/lugares-turisticos" className="font-bold text-base">
               Lugares Turisticos
             </Link>
