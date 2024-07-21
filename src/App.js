@@ -7,6 +7,7 @@ import ResetPassword from "./Pages/ResetPassword";
 import Requests from "./Pages/Requests";
 import AboutUs from "./Pages/AboutUs";
 import ProtectedAreas from "./Pages/ProtectedAreas";
+import RequestForm from "./Pages/RequestForm";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/solicitudes" element={<Requests />} />
       <Route path="/sobre-nosotros" element={<AboutUs />} />
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />
+      <Route path="/solicitud-formulario" element={<RequestForm />} />
     </Routes>
   );
 }
