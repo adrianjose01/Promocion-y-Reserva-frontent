@@ -8,6 +8,7 @@ import Requests from "./Pages/Requests";
 import AboutUs from "./Pages/AboutUs";
 import ProtectedAreas from "./Pages/ProtectedAreas";
 import AreasDetails from "./Pages/AreasDetails";
+import RequestForm from "./Pages/RequestForm";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/sobre-nosotros" element={<AboutUs />} />
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />
       <Route path="/lugares-turisticos/:id" element={<AreasDetails />} />
+      <Route path="/solicitud-formulario" element={<RequestForm />} />
     </Routes>
   );
 }

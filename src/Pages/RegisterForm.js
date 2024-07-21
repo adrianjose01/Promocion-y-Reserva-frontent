@@ -88,7 +88,7 @@ const RegisterForm = () => {
             <input
               type={showPassword ? "text" : "password"}
               {...register("contrasena", { required: true })}
-              className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10" // pr-10 adds padding to the right for the icon
+              className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10"
               placeholder="Contraseña"
             />
             <FontAwesomeIcon
