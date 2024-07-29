@@ -7,6 +7,7 @@ import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Footer from "../Components/Footer";
 import { Link } from "react-router-dom";
+import Modal from "../UI/Modal";
 
 const RegisterForm = () => {
   const {
@@ -17,8 +18,15 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = (data) => console.log(data);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="flex flex-col min-h-screen">
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <h1 className="text-xl font-bold text-sky-900">
+          Esta funcion no esta disponible!
+        </h1>
+      </Modal>
       <div className="flex-grow flex flex-col justify-center items-center my-10">
         <div className="absolute top-4 left-4">
           <Link to="/">
@@ -45,13 +53,15 @@ const RegisterForm = () => {
             <button
               type="button"
               className="w-48 py-1 mb-3 text-sky-900 font-bold border-2 border-sky-900 rounded-md"
+              onClick={() => setIsOpen(true)}
             >
               <FontAwesomeIcon icon={faFacebookF} className="mr-2" />
               Facebook
             </button>
             <button
               type="button"
-              className="w-48 py-1 md:ml-2 text-sky-900 font-bold border-2 border-sky-900 rounded-md "
+              className="w-48 py-1 md:ml-2 text-sky-900 font-bold border-2 border-sky-900 rounded-md"
+              onClick={() => setIsOpen(true)}
             >
               <FontAwesomeIcon icon={faGoogle} className="mr-2" />
               Google
