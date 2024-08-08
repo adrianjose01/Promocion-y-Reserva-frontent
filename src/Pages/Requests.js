@@ -1,4 +1,3 @@
-// src/Requests.js
 import React from "react";
 import RequestCard from "../Components/RequestCard";
 import Footer from "../Components/Footer";
@@ -9,40 +8,43 @@ import IslaCabritos from "../Images/isla-cabritos.jpg";
 import SierraBahoruco from "../Images/sierra-bahoruco.jpg";
 import ValleNuevo from "../Images/valle-nuevo.jpg";
 
-
 const requests = [
   {
+    id: 1,
     title: 'Parque Ecologico Ojos Indigenas - Punta Cana',
     date: '23/Nov/2023',
     status: 'ABIERTA',
     image: PuntaCanaPhoto,
   },
   {
+    id: 2,
     title: 'Parque Nacional Isla Cabritos - Lago Enriquillo',
     date: '05/Dic/2023',
     status: 'CERRADA',
     image: IslaCabritos,
   },
   {
+    id: 3,
     title: 'Parque Nacional del Este - Punta Cana',
     date: '12/Ene/2024',
     status: 'ABIERTA',
     image: ParqueEste,
   },
   {
+    id: 4,
     title: 'Parque Nacional Sierra de Bahoruco - Barahona',
     date: '15/Mar/2024',
     status: 'ABIERTA',
     image: SierraBahoruco,
   },
   {
+    id: 5,
     title: 'Parque Nacional Valle Nuevo',
     date: '20/May/2024',
     status: 'CERRADA',
     image: ValleNuevo,
   },
 ];
-
 
 const Requests = () => {
   return (
@@ -58,6 +60,7 @@ const Requests = () => {
           {requests.map((request, index) => (
             <RequestCard
               key={index}
+              id={request.id} // Pasamos el ID para la edición
               title={request.title}
               date={request.date}
               status={request.status}

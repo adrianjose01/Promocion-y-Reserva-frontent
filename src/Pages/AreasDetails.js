@@ -45,6 +45,7 @@ const AreasDetails = () => {
     <div className="h-dvh flex flex-col">
       <Header />
       <div className="m-10">
+        <img className="rounded-lg" alt={area.name} src={area.url} />
         <h1 className="my-4 font-bold text-xl">{area.name}</h1>
         <img className="w-80 rounded-lg" alt="Protected Area" src={area.url} />
         <h1 className="my-4 max-w-[800px]">{area.description}</h1>
