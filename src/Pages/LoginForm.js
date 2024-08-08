@@ -38,6 +38,9 @@ const RegisterForm = () => {
       );
 
       const dataResponse = response.data;
+      if (dataResponse.hasError) {
+        return alert(dataResponse.error);
+      }
       setCurrentUser(dataResponse);
       setIsLoggedIn(true);
       navigate("/");
