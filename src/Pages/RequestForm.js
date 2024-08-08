@@ -11,6 +11,7 @@ import PrimaryButton from "../UI/PrimaryButton";
 const RequestForm = () => {
   const { areaId } = useParams();
   const [reservations, setReservations] = useState(null);
+  const [area, setArea] = useState();
   const { currentUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -28,7 +29,12 @@ const RequestForm = () => {
       const response = await axios.get(
         "https://ecoproject-aacab-default-rtdb.firebaseio.com/reservation.json"
       );
-      console.log(response.data);
+
+      const responseArea = await axios.get(
+        `https://ecoacceso-hegfbdf3cketbhfc.eastus-01.azurewebsites.net/api/ProtectedArea/`
+      );
+      const protectedArea = responseArea.data;
+      setArea(protectedArea);
       setReservations(response.data);
     };
     getReservation();
@@ -39,8 +45,14 @@ const RequestForm = () => {
       const newOject = {
         userId: currentUser.id,
         protectedAreaID: areaId,
+        title: area.find((a) => a.id.toString() === areaId.toString()).name,
+        image: area.find((a) => a.id.toString() === areaId.toString()).url,
         reservationDate: new Date(data.fechaReserva).toISOString(),
         numberOfPeople: data.numPersonas,
+        firstName: currentUser.firtName,
+        lastName: currentUser.lastName,
+        cedula: currentUser.cedula,
+        email: currentUser.email,
         status: "ABIERTA",
       };
 
@@ -79,6 +91,10 @@ const RequestForm = () => {
   const goToRequests = () => {
     navigate("/solicitudes");
   };
+
+  if (!currentUser) {
+    return navigate("/");
+  }
 
   return (
     <div className="flex flex-col min-h-screen">

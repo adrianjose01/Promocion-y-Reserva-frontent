@@ -142,7 +142,10 @@ const RegisterForm = () => {
           <div className="mb-2 relative">
             <input
               type={showPassword ? "text" : "password"}
-              {...register("password", { required: true })}
+              {...register("password", {
+                required: true,
+                pattern: { value: /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{6,}$/ },
+              })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10"
               placeholder="Contraseña"
             />
@@ -151,8 +154,11 @@ const RegisterForm = () => {
               className="hidden md:inline relative right-8 text-gray-500 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             />
-            {errors.contrasena && (
-              <span className="text-red-500">Este campo es obligatorio</span>
+            {errors.password && (
+              <span className="text-red-500">
+                Este campo debe contener al menos 1 caracter númerico, 1
+                mayúscula y 1 caracter no alfanúmerico.{" "}
+              </span>
             )}
           </div>
 
@@ -190,7 +196,7 @@ const RegisterForm = () => {
               type="text"
               {...register("phone", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2"
-              placeholder="Télofono"
+              placeholder="Teléfono"
             />
             {errors.cedula && (
               <span className="text-red-500">Este campo es obligatorio</span>

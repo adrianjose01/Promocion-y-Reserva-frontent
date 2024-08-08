@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Components/Header";
@@ -14,12 +14,17 @@ const Profile = () => {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onSubmit = (data) => {
     console.log(data);
   };
 
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser);
+
+  if (!currentUser) {
+    return navigate("/");
+  }
 
   return (
     <>

@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import PrimaryButton from "../UI/PrimaryButton";
+import { UserContext } from "../Context/user-context";
 
 const AreasDetails = () => {
   const { id } = useParams();
   const [area, setArea] = useState(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("Requested ID:", id); // Verifica el ID
@@ -32,6 +35,10 @@ const AreasDetails = () => {
 
     fetchAreaDetails();
   }, [id]);
+
+  if (!currentUser) {
+    return navigate("/");
+  }
 
   if (error) {
     return <div>{error}</div>; // Muestra mensaje de error

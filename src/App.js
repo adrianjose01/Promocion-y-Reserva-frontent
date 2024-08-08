@@ -11,6 +11,7 @@ import AreasDetails from "./Pages/AreasDetails";
 import RequestForm from "./Pages/RequestForm";
 import NewsList from "./Pages/NewsList";
 import RequestEdit from "./Pages/RequestEdit";
+import AllRequests from "./Pages/AllRequest";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/perfil" element={<Profile />} />
       <Route path="/reestablecer-contraseña" element={<ResetPassword />} />
       <Route path="/solicitudes" element={<Requests />} />
+      <Route path="/todas-solicitudes" element={<AllRequests />} />
       <Route path="/sobre-nosotros" element={<AboutUs />} />
       <Route path="/noticias" element={<NewsList />} />
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />

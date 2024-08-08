@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import RequestCard from "../Components/RequestCard";
+import EditRequestCard from "../Components/EditRequestCard";
 import Footer from "../Components/Footer";
 import Header from "../Components/Header";
 import { UserContext } from "../Context/user-context";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const Requests = () => {
+const AllRequests = () => {
   const [requests, setRequest] = useState(null);
   const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -19,12 +19,7 @@ const Requests = () => {
           "https://ecoproject-aacab-default-rtdb.firebaseio.com/reservation.json"
         )
       ).data;
-
-      // Filtering to my request
-      const myRequest = requestResponse.filter(
-        (r) => r.userId.toString() === currentUser.id
-      );
-      setRequest(myRequest);
+      setRequest(requestResponse);
     };
 
     getRequests();
@@ -40,13 +35,13 @@ const Requests = () => {
       <div className="flex-grow flex flex-col justify-center items-center my-10">
         <header className="text-center mb-8">
           <h1 className="text-3xl text-sky-800 font-bold mb-10">
-            Mis Solicitudes
+            Todas las Solicitudes
           </h1>
         </header>
         <div>
           {requests &&
             requests.map((request, index) => (
-              <RequestCard
+              <EditRequestCard
                 key={index}
                 id={request.userId + request.protectedAreaID} // Pasamos el ID para la edición
                 title={request.title}
@@ -62,4 +57,4 @@ const Requests = () => {
   );
 };
 
-export default Requests;
+export default AllRequests;

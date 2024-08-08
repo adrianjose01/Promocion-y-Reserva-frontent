@@ -11,6 +11,8 @@ const Header = () => {
 
   const { isLoggedIn, currentUser } = useContext(UserContext);
 
+  const isAdmin = currentUser?.roles.includes("Admin");
+
   const navigate = useNavigate();
 
   function onToggleMenu() {
@@ -82,6 +84,19 @@ const Header = () => {
                   >
                     Solicitudes
                   </Dropdown.Item>
+                  {isAdmin && (
+                    <Dropdown.Item
+                      style={{
+                        fontWeight: "bold",
+                        fontSize: "16px",
+                        margin: "5px",
+                        cursor: "pointer",
+                      }}
+                      onSelect={() => navigate("/todas-solicitudes")}
+                    >
+                      Solicitudes global
+                    </Dropdown.Item>
+                  )}
                   <Dropdown.Item
                     style={{
                       fontWeight: "bold",

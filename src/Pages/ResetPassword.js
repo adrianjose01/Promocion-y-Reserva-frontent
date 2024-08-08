@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../Images/logo.jpg";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../Context/user-context";
@@ -16,6 +16,8 @@ const ResetPassword = () => {
   } = useForm();
 
   const { currentUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -41,6 +43,10 @@ const ResetPassword = () => {
       alert("Algo salió mal, intentelo de nuevo.");
     }
   };
+
+  if (!currentUser) {
+    return navigate("/");
+  }
 
   return (
     <>
