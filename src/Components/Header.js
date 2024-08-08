@@ -19,7 +19,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="flex items-center justify-between mx-10 my-3">
+      <nav className="flex items-center justify-between mx-10 sm:mx-20 my-3">
         <Link to="/">
           <img className="w-16 h-16" src={logo} alt="Logo" />
         </Link>

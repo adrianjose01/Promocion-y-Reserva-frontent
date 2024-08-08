@@ -19,6 +19,7 @@ const Profile = () => {
   };
 
   const { currentUser } = useContext(UserContext);
+  console.log(currentUser);
 
   return (
     <>

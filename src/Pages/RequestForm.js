@@ -1,16 +1,21 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { UserContext } from "../Context/user-context";
+import Modal from "../UI/Modal";
+import PrimaryButton from "../UI/PrimaryButton";
 
 const RequestForm = () => {
   const { areaId } = useParams();
+  const [reservations, setReservations] = useState(null);
   const { currentUser } = useContext(UserContext);
-  const [area, setArea] = useState(null);
-  const [error, setError] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [modalText, setModalText] = useState("");
+  const navigate = useNavigate();
 
   const {
     register,
@@ -18,35 +23,74 @@ const RequestForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   useEffect(() => {
+    const getReservation = async () => {
+      const response = await axios.get(
+        "https://ecoproject-aacab-default-rtdb.firebaseio.com/reservation.json"
+      );
+      console.log(response.data);
+      setReservations(response.data);
+    };
+    getReservation();
+  }, []);
+
+  const onSubmit = async (data) => {
     try {
-      const fetchAreaDetails = async () => {
-        try {
-          const response = await axios.get(
-            `https://ecoacceso-hegfbdf3cketbhfc.eastus-01.azurewebsites.net/api/ProtectedArea/`
-          );
-          console.log("API Response:", response.data); // Verifica la respuesta de la API
-          const protectedArea = response.data.find(
-            (ar) => ar.id.toString() === areaId.toString()
-          );
-          setArea(protectedArea);
-        } catch (error) {
-          console.error("Error fetching area details:", error);
-          setError("No se pudo cargar la información del área.");
-        }
+      const newOject = {
+        userId: currentUser.id,
+        protectedAreaID: areaId,
+        reservationDate: new Date(data.fechaReserva).toISOString(),
+        numberOfPeople: data.numPersonas,
+        status: "ABIERTA",
       };
 
-      fetchAreaDetails();
-    } catch (err) {}
-  }, [areaId]);
+      const repeatedRequest = reservations.find(
+        (r) =>
+          r.userId.toString() === currentUser.id.toString() &&
+          r.protectedAreaID.toString() === areaId.toString() &&
+          r.status.toString() === "ABIERTA"
+      );
+
+      if (repeatedRequest) {
+        setModalText("Existe una solicitud abierta para esa área.");
+        setIsError(true);
+        return setIsOpen(true);
+      }
+
+      await axios.put(
+        "https://ecoproject-aacab-default-rtdb.firebaseio.com/reservation.json",
+        [...reservations, newOject],
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      setModalText("La solicitud se ha procesado correctamente.");
+      setIsError(false);
+      setIsOpen(true);
+    } catch (err) {
+      setModalText("Algo salió mal.");
+      setIsError(true);
+      setIsOpen(true);
+    }
+  };
+
+  const goToRequests = () => {
+    navigate("/solicitudes");
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <h1 className="text-xl font-bold text-sky-900">{modalText}</h1>
+        <PrimaryButton
+          onClick={isError ? () => setIsOpen(false) : goToRequests}
+        >
+          Cerrar
+        </PrimaryButton>
+      </Modal>
       <main className="flex-grow p-4">
         <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md drop-shadow-2xl mb-10">
           <h2 className="text-3xl font-bold mb-8 text-center text-sky-800">
@@ -130,7 +174,7 @@ const RequestForm = () => {
                 id="cedula"
                 className="w-full px-4 py-3 border rounded-md"
                 type="text"
-                value={currentUser.firtName}
+                value={currentUser.cedula}
                 readOnly
               />
               {errors.cedula && (

@@ -8,6 +8,8 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Footer from "../Components/Footer";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Modal from "../UI/Modal";
+import PrimaryButton from "../UI/PrimaryButton";
 
 const RegisterForm = () => {
   const {
@@ -17,6 +19,8 @@ const RegisterForm = () => {
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -50,6 +54,12 @@ const RegisterForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <Modal open={isOpen} onClose={() => setIsOpen(false)}>
+        <h1 className="text-xl font-bold text-sky-900">
+          Esta funcion no esta disponible!
+        </h1>
+        <PrimaryButton onClick={() => setIsOpen(false)}>Cerrar</PrimaryButton>
+      </Modal>
       <div className="flex-grow flex flex-col justify-center items-center my-10">
         <div className="absolute top-4 left-4">
           <Link to="/">
@@ -75,6 +85,7 @@ const RegisterForm = () => {
           <div className="mb-4  ">
             <button
               type="button"
+              onClick={() => setIsOpen(true)}
               className="w-48 py-1 mb-3 text-sky-900 font-bold border-2 border-sky-900 rounded-md "
             >
               <FontAwesomeIcon icon={faFacebookF} className="mr-2" />
@@ -82,6 +93,7 @@ const RegisterForm = () => {
             </button>
             <button
               type="button"
+              onClick={() => setIsOpen(true)}
               className="w-48 py-1 md:ml-2 text-sky-900 font-bold border-2 border-sky-900 rounded-md "
             >
               <FontAwesomeIcon icon={faGoogle} className="mr-2" />

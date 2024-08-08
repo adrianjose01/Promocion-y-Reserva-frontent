@@ -50,8 +50,6 @@ const AreasDetails = () => {
         <h1 className="my-4 max-w-[800px]">{area.description}</h1>
         <h1 className="mt-4 font-bold">Ubicación:</h1>
         <h1 className="mb-4">{area.location}</h1>
-        <h1 className="mt-4 font-bold">Habilidad:</h1>
-        <h1 className="mb-4">{area.ability}</h1>
         <Link to={`/solicitud-formulario/${area.id}`}>
           <PrimaryButton>Solicitar</PrimaryButton>
         </Link>

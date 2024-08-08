@@ -1,6 +1,5 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import PrimaryButton from "./PrimaryButton";
 
 const MODAL_STYLES = {
   position: "fixed",
@@ -34,7 +33,6 @@ const Modal = ({ children, open, onClose }) => {
         style={MODAL_STYLES}
       >
         {children}
-        <PrimaryButton onClick={onClose}>Cerrar</PrimaryButton>
       </div>
     </>,
     document.getElementById("portal")

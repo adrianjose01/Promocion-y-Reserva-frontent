@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "../UI/Modal";
 import { UserContext } from "../Context/user-context";
 import axios from "axios";
+import PrimaryButton from "../UI/PrimaryButton";
 
 const RegisterForm = () => {
   const {
@@ -54,6 +55,7 @@ const RegisterForm = () => {
         <h1 className="text-xl font-bold text-sky-900">
           Esta funcion no esta disponible!
         </h1>
+        <PrimaryButton onClick={() => setIsOpen(false)}>Cerrar</PrimaryButton>
       </Modal>
       <div className="flex-grow flex flex-col justify-center items-center my-10">
         <div className="absolute top-4 left-4">
