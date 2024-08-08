@@ -9,7 +9,7 @@ import { Dropdown } from "rsuite";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { isLoggedIn, currentUser } = useContext(UserContext);
+  const { isLoggedIn, currentUser, logout } = useContext(UserContext);
 
   const isAdmin = currentUser?.roles.includes("Admin");
 
@@ -104,6 +104,7 @@ const Header = () => {
                       margin: "5px",
                       cursor: "pointer",
                     }}
+                    onSelect={() => logout()}
                   >
                     Cerrar Sesión
                   </Dropdown.Item>
