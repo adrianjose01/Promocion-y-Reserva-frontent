@@ -10,6 +10,7 @@ import ProtectedAreas from "./Pages/ProtectedAreas";
 import AreasDetails from "./Pages/AreasDetails";
 import RequestForm from "./Pages/RequestForm";
 import NewsList from "./Pages/NewsList";
+import RequestEdit from "./Pages/RequestEdit";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />
       <Route path="/lugares-turisticos/:id" element={<AreasDetails />} />
       <Route path="/solicitud-formulario" element={<RequestForm />} />
+      <Route path="/editar-solicitud/:id" element={<RequestEdit />} />
     </Routes>
   );
 }

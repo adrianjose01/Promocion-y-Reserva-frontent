@@ -38,12 +38,11 @@ const AreasDetails = () => {
     <div className="h-dvh flex flex-col">
       <Header />
       <div className="m-10">
+        <img className="rounded-lg" alt={area.name} src={area.url} />
         <h1 className="my-4 font-bold text-xl">{area.name}</h1>
         <h1 className="my-4 max-w-[800px]">{area.description}</h1>
         <h1 className="mt-4 font-bold">Ubicación:</h1>
         <h1 className="mb-4">{area.location}</h1>
-        <h1 className="mt-4 font-bold">Habilidad:</h1>
-        <h1 className="mb-4">{area.ability}</h1>
         <Link to={"/solicitud-formulario"}>
           <PrimaryButton>Solicitar</PrimaryButton>
         </Link>
