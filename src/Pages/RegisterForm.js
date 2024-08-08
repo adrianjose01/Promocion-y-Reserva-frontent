@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const RegisterForm = () => {
   const {
@@ -15,7 +16,37 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const newObj = {
+        ...data,
+        email: data.userName,
+        rolId: "Client",
+        isActive: true,
+        photo:
+          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+      };
+
+      const response = await axios.post(
+        "https://ecoacceso-hegfbdf3cketbhfc.eastus-01.azurewebsites.net/api/Account/register",
+        newObj,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.data);
+      alert("Su cuenta ha sido creada correctamente!");
+      navigate("/iniciar-sesion");
+    } catch (err) {
+      console.log(err);
+      alert("Algo salió mal. Inténtelo de nuevo.");
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -63,9 +94,21 @@ const RegisterForm = () => {
           <div className="mb-2">
             <input
               type="text"
-              {...register("nombre", { required: true })}
+              {...register("firstName", { required: true })}
               className="w-80 p-2 bg-gray-200 rounded-lg mt-2"
-              placeholder="Nombre completo"
+              placeholder="Nombre"
+            />
+            {errors.nombre && (
+              <span className="text-red-500">Este campo es obligatorio</span>
+            )}
+          </div>
+
+          <div className="mb-2">
+            <input
+              type="text"
+              {...register("lastName", { required: true })}
+              className="w-80 p-2 bg-gray-200 rounded-lg mt-2"
+              placeholder="Apellido"
             />
             {errors.nombre && (
               <span className="text-red-500">Este campo es obligatorio</span>
@@ -75,7 +118,7 @@ const RegisterForm = () => {
           <div className="mb-2">
             <input
               type="email"
-              {...register("correo", { required: true })}
+              {...register("userName", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2"
               placeholder="Correo electrónico"
             />
@@ -87,9 +130,26 @@ const RegisterForm = () => {
           <div className="mb-2 relative">
             <input
               type={showPassword ? "text" : "password"}
-              {...register("contrasena", { required: true })}
+              {...register("password", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10"
               placeholder="Contraseña"
+            />
+            <FontAwesomeIcon
+              icon={showPassword ? faEye : faEyeSlash}
+              className="hidden md:inline relative right-8 text-gray-500 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            />
+            {errors.contrasena && (
+              <span className="text-red-500">Este campo es obligatorio</span>
+            )}
+          </div>
+
+          <div className="mb-2 relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              {...register("confirmPassword", { required: true })}
+              className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10"
+              placeholder="Confirmar Contraseña"
             />
             <FontAwesomeIcon
               icon={showPassword ? faEye : faEyeSlash}
@@ -107,6 +167,18 @@ const RegisterForm = () => {
               {...register("cedula", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2"
               placeholder="Cédula"
+            />
+            {errors.cedula && (
+              <span className="text-red-500">Este campo es obligatorio</span>
+            )}
+          </div>
+
+          <div className="mb-1">
+            <input
+              type="text"
+              {...register("phone", { required: true })}
+              className="w-80 p-2 bg-gray-200 border rounded-lg mt-2"
+              placeholder="Télofono"
             />
             {errors.cedula && (
               <span className="text-red-500">Este campo es obligatorio</span>

@@ -6,7 +6,7 @@ const AreaCard = ({ area }) => {
     <div className="bg-white p-6 rounded-lg shadow-lg flex flex-col justify-between">
       <div>
         <img
-          src={area.imgUrl}
+          src={area.url}
           alt={area.name}
           className="h-48 w-full object-cover rounded-lg mb-4"
         />

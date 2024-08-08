@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import imagenRegistro from "../Images/wallpaper.png";
 import logo from "../Images/logo.jpg";
@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebookF, faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Footer from "../Components/Footer";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from "../UI/Modal";
+import { UserContext } from "../Context/user-context";
+import axios from "axios";
 
 const RegisterForm = () => {
   const {
@@ -15,8 +17,34 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = (data) => console.log(data);
+
+  const { setCurrentUser, setIsLoggedIn } = useContext(UserContext);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post(
+        "https://ecoacceso-hegfbdf3cketbhfc.eastus-01.azurewebsites.net/api/Account/authenticate",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const dataResponse = response.data;
+      setCurrentUser(dataResponse);
+      setIsLoggedIn(true);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      alert("Algo salió mal, inténtelo de nuevo");
+    }
+  };
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -71,7 +99,7 @@ const RegisterForm = () => {
           <div className="mb-2">
             <input
               type="email"
-              {...register("correo", { required: true })}
+              {...register("userName", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2"
               placeholder="Correo electrónico"
             />
@@ -83,7 +111,7 @@ const RegisterForm = () => {
           <div className="mb-2 relative">
             <input
               type={showPassword ? "text" : "password"}
-              {...register("contrasena", { required: true })}
+              {...register("password", { required: true })}
               className="w-80 p-2 bg-gray-200 border rounded-lg mt-2 pr-10" // pr-10 adds padding to the right for the icon
               placeholder="Contraseña"
             />

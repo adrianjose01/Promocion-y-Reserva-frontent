@@ -24,7 +24,7 @@ function App() {
       <Route path="/noticias" element={<NewsList />} />
       <Route path="/lugares-turisticos" element={<ProtectedAreas />} />
       <Route path="/lugares-turisticos/:id" element={<AreasDetails />} />
-      <Route path="/solicitud-formulario" element={<RequestForm />} />
+      <Route path="/solicitud-formulario/:areaId" element={<RequestForm />} />
     </Routes>
   );
 }

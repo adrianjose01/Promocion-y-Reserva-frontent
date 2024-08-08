@@ -9,7 +9,7 @@ import { Dropdown } from "rsuite";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const { isLoggedIn } = useContext(UserContext);
+  const { isLoggedIn, currentUser } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ const Header = () => {
                     background: "white",
                   }}
                   style={{ fontWeight: "bold" }}
-                  title={`Juan M. Perez`}
+                  title={`${currentUser.firtName}`}
                 >
                   <Dropdown.Item
                     style={{

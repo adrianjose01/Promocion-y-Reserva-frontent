@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import background from "../Images/background-homepage.png";
 import imageExperience from "../Images/image-homepage.png";
 import { Link } from "react-router-dom";
+import { UserContext } from "../Context/user-context";
 
 const Homepage = () => {
+  const { isLoggedIn } = useContext(UserContext);
+
   return (
     <>
       <Header />
@@ -17,7 +20,7 @@ const Homepage = () => {
           Conoce Los Mejores Lugares Turisticos de Republica Dominicana
         </h1>
         <Link
-          to="/registrarse"
+          to={isLoggedIn ? "/lugares-turisticos" : "/registrarse"}
           className="py-2 px-4 bg-sky-900 text-white rounded-lg"
         >
           Empieza ya
